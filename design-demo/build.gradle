@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+}
+
+group 'com.zhuangpeng'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    //本地maven仓库
+    mavenLocal()
+    //公共仓库
+    mavenCentral()
+}
+
+//全局编码
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+//gradle 包管理工具
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+//自定义任务
+def createDir = {
+    path ->
+        File dir = new File(path)
+        if (!dir.exists()) {
+            dir.mkdirs()
+        }
+}
+
+task makeJavaDir(){
+    def paths = ['src/main/java', 'src/main/resource','src/test/java','src/test/resource']
+    doFirst {
+        paths.forEach(createDir)
+    }
+}
+
+task makeWebDir(){
+    dependsOn 'makeJavaDir'
+    def paths = ['src/main/webapp', 'src/test/webapp']
+    doLast {
+        paths.forEach(createDir)
+    }
+}
