@@ -6,7 +6,10 @@ package com.zpwtt.singleton;
  * @author zhuangpeng
  */
 public class Singleton05 {
-    private static Singleton05 INSTANCE;
+    /**
+     * 必须要加 volatile关键词修饰 解决JVM在转变成汇编时的语句重拍问题JIT
+     */
+    private volatile static Singleton05 INSTANCE;
 
     /**
      * 设置构造函数为私有的，禁止通过构造方法new一个类
