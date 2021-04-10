@@ -1,21 +1,24 @@
 package com.zpwtt.strategy;
 
-public class Sorter {
+/**
+ * @author zhuangpeng
+ */
+public class Sorter<T> {
 
-    public static void sort(int[] arr) {
+    public void sort(T[] arr, Comparator<T> comparator) {
         for (int i = 0; i < arr.length - 1; i++) {
             int minPos = i;
 
             for (int j = i + 1; j < arr.length; j++) {
-                minPos = arr[j] < arr[minPos] ? j : minPos;
+                minPos = comparator.compareTo(arr[j], arr[minPos]) < 0  ? j : minPos;
             }
 
             swap(arr, i, minPos);
         }
     }
 
-    private static void swap(int[] arr, int i, int j) {
-        int temp = arr[i];
+    private  void swap(T[] arr, int i, int j) {
+        T temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
     }
