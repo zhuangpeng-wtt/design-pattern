@@ -22,6 +22,7 @@ tasks.withType(JavaCompile) {
 //gradle 包管理工具
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile group: 'org.springframework', name: 'spring-context', version: '5.1.6.RELEASE'
 }
 
 //自定义任务
