@@ -3,7 +3,7 @@ package com.zpwtt.flyweight;
 /**
  * @author zhuangpeng
  */
-public class Circle implements Shape {
+public class Circle {
 
     private String color;
     private int x;
@@ -26,7 +26,6 @@ public class Circle implements Shape {
         this.radius = radius;
     }
 
-    @Override
     public void draw() {
         System.out.println("Circle: Draw() [Color : " + color
                 +", x : " + x +", y :" + y +", radius :" + radius);
